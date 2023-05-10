@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Beeblock Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <input class="adminChat" style="display:none;">
+  <ul class="pages">
+  	<li class="chat page">
+    <div class="chatArea">
+			<ul class="messages"></ul>
+			<div class="deletePopup" style="display:none;">hide message?</div>
+			<div class="forceoutPopup" style="display:none;">
+        <div class="name"></div>
+        kick user?
+      </div>
+		</div>
+		<input id="" class="inputNickname" placeholder="채팅에 참여하려면 닉네임을 여기에 입력해주세요">
+		<input class="inputMessage" placeholder="메시지 입력하기"/>
+      <img class="sendMessageIcon" src="./send_plane.png" alt="">
+    </li>
+    <!-- <li class="login page">
+      <div class="form">
+        <h3 class="title">What's your nickname?</h3>
+        <input class="usernameInput" type="text" maxlength="14" />
+      </div>
+    </li> -->
+<!--    <li class="start page"> -->
+<!--      <div class="chatStart"> -->
+<!--        <button>참여하기</button>  -->
+<!--      </div>  -->
+<!--    </li>  -->
+  </ul>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/index_main.js"></script>
+  
+</body>
+</html>

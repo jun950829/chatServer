@@ -1,0 +1,3 @@
+pm2 delete svr
+pm2 start svr.js
+pm2 list

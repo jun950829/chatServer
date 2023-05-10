@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>무제 문서</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      /* for touch screen */
+      touch-action: none;
+    }
+
+    .m_body {
+      width: 100%;
+      height: 440px;
+      margin: 0 auto;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      background: #111;
+      -webkit-perspective: 1000px;
+      perspective: 1000px;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      background-image:url("bg0308.jpg"); background-position: bottom;
+    }
+
+    #drag-container, #spin-container {
+      position: relative;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+	  margin: auto;
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      -webkit-transform: rotateX(-10deg);
+      transform: rotateX(-10deg);
+    }
+
+
+    #drag-container img, #drag-container video {
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      line-height: 200px;
+      font-size: 50px;
+      text-align: center;
+      -webkit-box-shadow: 0 0 8px #fff;
+      box-shadow: 0 0 8px #fff;
+      -webkit-box-reflect: below 8px linear-gradient(transparent, transparent, #fff3);
+
+      animation-name: hover_out; /* @keyframes에 지정한 이름을 여기다 쓴다 */
+      animation-duration: 0.5s; /* 애니메이션 동작 시간 */
+      animation-direction: alternate;
+      animation-fill-mode: forwards;
+    }
+
+
+    #drag-container img:hover, #drag-container video:hover {
+      -webkit-box-shadow: 0 0 15px #fffd;
+      box-shadow: 0 0 15px #fffd;
+      -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
+
+      animation-name: hover_in; /* @keyframes에 지정한 이름을 여기다 쓴다 */
+      animation-duration: 0.5s; /* 애니메이션 동작 시간 */
+      animation-direction: alternate;
+      animation-fill-mode: forwards;
+    }
+
+
+
+    #drag-container p {
+      font-family: Serif;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      height: 50px;
+      -webkit-transform: translate(-50%,-50%) rotateX(90deg);
+      transform: translate(-50%,-50%) rotateX(90deg);
+      color: #fff;
+
+      background-image: url('logo.png');
+      background-size: 150px auto;
+      background-repeat: no-repeat;
+      width: 150px; height=250px
+
+    }
+
+    #ground {
+      width: 900px;
+      height: 900px;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      -webkit-transform: translate(-50%,-50%) rotateX(90deg);
+      transform: translate(-50%,-50%) rotateX(90deg);
+      background: -webkit-radial-gradient(center center, farthest-side , #9993, transparent);
+    }
+
+    #music-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    @keyframes hover_in{
+      from { width: 100%;  height: 100%;}
+      to { width: 120%;  height: 120%;}
+    }
+    @keyframes hover_out{
+      from { width: 120%;  height: 120%;}
+      to { width: 100%;  height: 100%;}
+    }
+
+
+    @-webkit-keyframes spin {
+      from{
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+      } to{
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+    }
+
+    @keyframes spin {
+      from{
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+      } to{
+          -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+        }
+    }
+    @-webkit-keyframes spinRevert {
+      from{
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+      } to{
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+    }
+    @keyframes spinRevert {
+      from{
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+      } to{
+          -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+        }
+    }
+
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="m_body">
+
+  <div id="drag-container">
+    <div id="spin-container">
+
+      <img src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+      <img src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+      <img src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+      <img src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+      <!--<img src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">-->
+      <!-- link -->
+      <img src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" onMouseOut="javascript:card_out();" onMouseOver="javascript:card_hover();" onclick="javascript:card_link(2);" style="cursor:pointer;">
+
+      <!-- video  -->
+      <video controls autoplay="autoplay" loop>
+        <source src="https://player.vimeo.com/external/322244668.sd.mp4?s=338c48ac2dfcb1d4c0689968b5baf94eee6ca0c1&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
+      </video>
+
+      <!-- Text at center of ground -->
+      <p>&nbsp; </p>
+    </div>
+    <div id="ground"></div>
+  </div>
+
+  <div id="music-container"></div>
+
+</div>
+
+
+<script>
+
+  function card_link(type){
+    alert("클릭 이벤트 :  " + type);
+  }
+  function card_hover(){playSpin(false);}
+  function card_out(){playSpin(true);}
+
+  // 전역변수
+  var radius = 150;
+  var autoRotate = true; // auto rotate or not
+  var rotateSpeed = -30; // unit: seconds/360 degrees
+  var imgWidth = 120; // width of images (unit: px)
+  var imgHeight = 170; // height of images (unit: px)
+
+
+  // animation start after 1000 miliseconds
+  setTimeout(init, 100);
+
+  var odrag = document.getElementById('drag-container');
+  var ospin = document.getElementById('spin-container');
+  var aImg = ospin.getElementsByTagName('img');
+  var aVid = ospin.getElementsByTagName('video');
+  var aEle = [...aImg, ...aVid]; // combine 2 arrays
+
+  // Size of images
+  ospin.style.width = imgWidth + "px";
+  ospin.style.height = imgHeight + "px";
+
+  // 지면의 크기 - 반경에 따라 다름
+  var ground = document.getElementById('ground');
+  ground.style.width = radius * 3 + "px";
+  ground.style.height = radius * 3 + "px";
+
+  function init(delayTime) {
+    for (var i = 0; i < aEle.length; i++) {
+      aEle[i].style.transform = "rotateY(" + (i * (360 / aEle.length)) + "deg) translateZ(" + radius + "px)";
+      aEle[i].style.transition = "transform 1s";
+      aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
+    }
+  }/*초기회전공식*/
+
+  function applyTranform(obj) {
+    // 카메라 각도제 (between 0 and 180)
+    if(tY > 50) tY = 50;
+    if(tY < 0) tY = 0;
+    // Apply the angle
+    obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
+  }
+
+  function playSpin(yes) {
+    ospin.style.animationPlayState = (yes?'running':'paused');
+  }
+
+  var sX, sY, nX, nY, desX = 0,
+      desY = 0,
+      tX = 0,
+      tY = 10;
+
+  // auto spin
+  if (autoRotate) {
+    var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
+    ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
+  }
+
+
+  // setup events
+  document.onpointerdown = function (e) {
+    clearInterval(odrag.timer);
+    e = e || window.event;
+    var sX = e.clientX,
+        sY = e.clientY;
+
+    this.onpointermove = function (e) {
+      e = e || window.event;
+      var nX = e.clientX,
+          nY = e.clientY;
+      desX = nX - sX;
+      // desY = nY - sY;//*위아래 설정*//
+
+      tX += desX * 0.1;
+      tY += desY * 0.1;
+      applyTranform(odrag);
+      sX = nX;
+      sY = nY;
+    };
+
+
+    this.onpointerup = function (e) {
+      odrag.timer = setInterval(function () {
+        desX *= 0.95;
+        desY *= 0.95;
+        tX += desX * 0.1;
+        tY += desY * 0.1;
+        applyTranform(odrag);
+        playSpin(false);
+        if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
+          clearInterval(odrag.timer);
+          playSpin(true);
+        }
+      }, 17);
+      this.onpointermove = this.onpointerup = null;
+    };
+
+    return false;
+  };
+
+
+
+</script>
+</body>
+</html>
